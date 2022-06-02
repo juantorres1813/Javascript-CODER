@@ -1,0 +1,143 @@
+/* media queries */
+
+/* vista 1054 */
+
+@media screen and (max-width: 1054px) {
+    .contacto-contenedor {
+        grid-template-rows: 1.5fr 2fr;
+    }
+}
+
+/* vista max 1024  */
+
+@media screen and (max-width: 1024px) {
+    .gallery-container {
+        display: flex;
+        flex-flow: column wrap;
+        width: 100%;
+        margin: auto;
+    }
+}
+
+/* vista 991 */
+
+@media screen and (max-width: 991px) {
+    .navbar-nav {
+        flex-direction: column;
+
+        .nav-item {
+            flex-direction: column;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            text-align: center;
+        }
+    }
+
+    .nosotros {
+        display: flex;
+        flex-direction: column;
+
+        p {
+            text-align: center;
+        }
+
+        img {
+            width: 90%;
+            height: 100%;
+        }
+    }
+
+}
+
+/* vista tablet */
+
+@media screen and (max-width: 768px) {
+    .parrafo {
+        font-size: 40px;
+    }
+
+    .carousel-inner {
+        img {
+            width: 100%;
+            height: 500px;
+        }
+    }
+
+    .footer {
+        .grupofooter2 {
+            .footerTexto {
+                text-align: center;
+            }
+        }
+    }
+
+    .gallery-container{
+        img{
+            border: 5px solid rgb(14, 216, 223);
+        }
+    }
+}
+
+/* vista 616 */
+
+@media screen and (max-width: 616px) {
+    .contacto-contenedor {
+        grid-template-rows: 1fr 2fr;
+    }
+}
+
+/* vista mobile */
+
+@media screen and (max-width: 480px) {
+    .header {
+        display: flex;
+        flex-flow: column nowrap;
+
+        .menu {
+            display: flex;
+            flex-flow: column nowrap;
+        }
+    }
+
+    .grupofooter1 {
+        display: flex;
+        flex-flow: column wrap;
+    }
+
+    .gallery-container {
+        display: flex;
+        flex-flow: column wrap;
+        width: 90%;
+        margin: auto;
+    }
+
+    .productos {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .catalogoH3 {
+        text-align: center;
+    }
+
+    .nosotros {
+        img {
+            width: 95%;
+        }
+    }
+
+    .carousel-inner {
+        img {
+            width: 100%;
+            height: 400px;
+        }
+    }
+}
+
+/* vista 447 */
+
+@media screen and (max-width: 447px) {
+    .contacto-contenedor {
+        grid-template-rows: 0.9fr 2fr;
+    }
+}

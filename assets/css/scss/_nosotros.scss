@@ -1,0 +1,76 @@
+/* sobre mi */
+
+.nosotros {
+    color: #45648c;
+    font-family: 'Open Sans';
+    font-weight: 600;
+
+    h3 {
+        font-size: 50px;
+        text-align: center;
+        margin: 30px;
+        font-family: 'Roboto Slab';
+        font-weight: 700;
+        color: black;
+        grid-area: titulo2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 25px;
+        background: linear-gradient(145deg, #e7eaf9, #c2c5d2);
+        box-shadow: 24px 36px 40px #abadb8,
+            -24px -36px 90px #ffffff;
+    }
+
+    img {
+        display: block;
+        margin: auto;
+        width: 80%;
+        grid-area: imagen2
+    }
+
+    p {
+        text-align: justify;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 20px;
+        background: rgba(174, 187, 221, 0.6);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        strong{
+            color: #000;
+            font-weight: 700;
+        }
+    }
+}
+
+/* grid nosotros */
+
+.nosotros {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.3fr 1.5fr 0.4fr 0.3fr 0.3fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "titulo2 titulo2"
+        "imagen2 imagen2"
+        "parrafo3 parrafo3"
+        "parrafo4 parrafo4"
+        "parrafo5 parrafo5";
+
+    .p1 {
+        grid-area: parrafo3;
+    }
+
+    .p2 {
+        grid-area: parrafo4;
+    }
+
+    .p3 {
+        grid-area: parrafo5;
+    }
+}

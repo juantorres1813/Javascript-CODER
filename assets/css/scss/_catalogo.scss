@@ -1,0 +1,41 @@
+/* catalogo productos */
+
+.catalogoH3 {
+    font-size: 50px;
+    text-align: center;
+    margin: 30px;
+    font-family: 'Roboto Slab';
+    font-weight: 700;
+    border-radius: 25px;
+    background: linear-gradient(145deg, #e7eaf9, #c2c5d2);
+    box-shadow: 24px 36px 40px #abadb8,
+        -24px -36px 90px #ffffff;
+}
+
+.productos {
+    color: black;
+    font-family: 'Roboto Slab';
+    font-weight: 700;
+    font-size: 30px;
+    display: flex;
+    flex-flow: row wrap;
+    row-gap: 20px;
+    justify-content: space-evenly;
+
+    .card {
+        border: 1px solid black;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.4);
+        object-fit: cover;
+
+        img {
+            height: 420px;
+            width: 257px;
+
+            &:hover {
+                animation: pulse;
+                animation-duration: 1s;
+            }
+        }
+    }
+}

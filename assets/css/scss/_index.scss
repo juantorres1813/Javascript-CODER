@@ -1,0 +1,41 @@
+/* parrafo */
+
+.parrafo {
+    font-size: 45px;
+    font-family: 'Roboto Slab';
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(174, 187, 221, 0.6);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    text-align: center;
+}
+
+/* parrafo bienvenida */
+
+.parrafoBienvenida {
+    font-size: 50px;
+    margin: 30px;
+    font-family: 'Roboto Slab';
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 25px;
+    background: linear-gradient(145deg, #e7eaf9, #c2c5d2);
+    box-shadow: 24px 36px 40px #abadb8,
+        -24px -36px 90px #ffffff;
+}
+
+.carousel-inner {
+    img {
+        width: 100%;
+        height: 750px;
+    }
+}

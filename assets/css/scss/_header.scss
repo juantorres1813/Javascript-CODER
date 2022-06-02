@@ -1,0 +1,39 @@
+/*  header */
+
+.header {
+    background: rgba(0, 0, 0, 0.1);
+
+    .navbar {
+        div {
+            .navbar-brand {
+                img {
+                    padding: 13px;
+                    margin-left: 5px;
+                    width: 200px;
+                    height: 120px;
+                    border-radius: 30px;
+                }
+            }
+        }
+    }
+}
+
+.navbar-nav {
+    .nav-item {
+        font-family: 'Roboto Slab';
+        font-weight: 700;
+        font-size: 28px;
+
+        .nav-link {
+            text-decoration: none;
+            color: black;
+            text-transform: uppercase;
+            padding: 10px;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, .3);
+                transition: .4s;
+            }
+        }
+    }
+}
