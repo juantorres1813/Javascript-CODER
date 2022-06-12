@@ -47,6 +47,13 @@ const cantidadTotal = document.getElementById('cantidadTotal')
 
 let carrito = []
 
+document.addEventListener('DOMContentLoaded', () =>{
+    if (localStorage.getItem('carrito')){
+        carrito = JSON.parse(localStorage.getItem('carrito'))
+        actualizarCarrito()
+    }
+})
+
 botonVaciar.addEventListener('click', () => {
     carrito.length = 0
     actualizarCarrito()
@@ -117,6 +124,8 @@ const actualizarCarrito = () => {
         `
 
         contenedorCarrito.appendChild(div)
+
+        localStorage.setItem('carrito', JSON.stringify(carrito))
 
     })
 
