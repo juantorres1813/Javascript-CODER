@@ -143,10 +143,23 @@ precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.cantidad * prod
 
 }
 
-// Spread para complementario
+// Ejemplos Desestructuracion y Spread para complementario
 
-const Producto2 = {
-    ...Productos
+const objetos = {
+    nombre: "Javier",
+    ocupacion: "Pediatra",
+    hospital: "Dominguez",
+    dni: 38617495,
 }
 
-console.log(Producto2)
+const {nombre:nombreO,ocupacion,hospital,dni} = objetos
+
+// console.log(nombreO,ocupacion,hospital,dni)
+
+const objetos2 = {
+    ...objetos,
+    dni: 37456345,
+    localidad: "Deseado",
+}
+
+// console.log(objetos2)
