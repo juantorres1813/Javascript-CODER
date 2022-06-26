@@ -1,39 +1,13 @@
-let Productos = [{
-        id: 1,
-        nombre: "Cartuchera",
-        cantidad: 1,
-        precio: 1900,
-        img: './assets/multimedia/producto10.jpg'
-    },
-    {
-        id: 2,
-        nombre: "Bolso",
-        cantidad: 1,
-        precio: 3900,
-        img: './assets/multimedia/producto1.jpg'
-    },
-    {
-        id: 3,
-        nombre: "Lunchera",
-        cantidad: 1,
-        precio: 1200,
-        img: './assets/multimedia/producto12.jpeg'
-    },
-    {
-        id: 4,
-        nombre: "Guardatuti",
-        cantidad: 1,
-        precio: 950,
-        img: './assets/multimedia/producto14.jpeg'
-    },
-    {
-        id: 5,
-        nombre: "Portacelular",
-        cantidad: 1,
-        precio: 350,
-        img: './assets/multimedia/producto3.jpg'
-    },
-]
+fetch('data.json')
+    .then((resp) => {
+        resp.json()
+    })
+    .then((data) => {
+        console.log(data)
+    })
+
+
+
 
 const contenedorProductos = document.getElementById('contenedor-productos')
 
@@ -191,4 +165,3 @@ const objetos2 = {
 // console.log(objetos2)
 
 // Agregué Toastify. Justificación: Esta librería me sirve para crear alertas cuando agrego o elimino un producto del carrito.
-
