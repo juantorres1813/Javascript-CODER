@@ -1,14 +1,3 @@
-fetch('data.json')
-    .then((resp) => {
-        resp.json()
-    })
-    .then((data) => {
-        console.log(data)
-    })
-
-
-
-
 const contenedorProductos = document.getElementById('contenedor-productos')
 
 const contenedorCarrito = document.getElementById('carrito-contenedor')
@@ -19,11 +8,50 @@ const cantidad = document.getElementById('cantidad')
 const precioTotal = document.getElementById('precioTotal')
 const cantidadTotal = document.getElementById('cantidadTotal')
 
+// Traer productos de data.json
+
+const fetchData = async () => {
+    try{
+        const res = await fetch('data.json')
+        const data = await res.json()
+        console.log(data)
+        PintarProductos()
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+// Pintar productos
+
+const PintarProductos = data =>{
+    data.forEach((producto) => {
+        const div = document.createElement('div')
+        div.classList.add('card')
+        div.innerHTML = `
+    <img class="card-img-top mx-auto mt-3" src=${producto.img} alt= "${producto.id}">
+    <div class="card-body">
+        <h3 class="card-title">${producto.nombre}</h3>
+        <p class="card-text">Precio:$ ${producto.precio}</p>
+        <button type="button" id="agregar${producto.id}" class="btn btn-dark">Agregar</button>
+    </div>
+    `
+        contenedorProductos.appendChild(div)
+    
+        const boton = document.getElementById(`agregar${producto.id}`)
+    
+        boton.addEventListener('click', () => {
+            agregarAlCarrito(producto.id)
+        })
+    })
+}
+
+
 //  Carrito JSON
 
 let carrito = []
 
 document.addEventListener('DOMContentLoaded', () => {
+    fetchData()
     if (localStorage.getItem('carrito')) {
         carrito = JSON.parse(localStorage.getItem('carrito'))
         actualizarCarrito()
@@ -37,25 +65,6 @@ botonVaciar.addEventListener('click', () => {
     actualizarCarrito()
 })
 
-Productos.forEach((producto) => {
-    const div = document.createElement('div')
-    div.classList.add('card')
-    div.innerHTML = `
-<img class="card-img-top mx-auto mt-3" src=${producto.img} alt= "${producto.id}">
-<div class="card-body">
-    <h3 class="card-title">${producto.nombre}</h3>
-    <p class="card-text">Precio:$ ${producto.precio}</p>
-    <button type="button" id="agregar${producto.id}" class="btn btn-dark">Agregar</button>
-</div>
-`
-    contenedorProductos.appendChild(div)
-
-    const boton = document.getElementById(`agregar${producto.id}`)
-
-    boton.addEventListener('click', () => {
-        agregarAlCarrito(producto.id)
-    })
-})
 
 // Agregar producto a carrito
 
@@ -71,7 +80,7 @@ const agregarAlCarrito = (prodId) => {
 
         })
     } else {
-        const item = Productos.find((prod) => prod.id === prodId)
+        const item = data.find((prod) => prod.id === prodId)
 
         carrito.push(item)
     }
