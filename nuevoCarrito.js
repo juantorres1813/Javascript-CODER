@@ -15,7 +15,7 @@ const fetchData = async () => {
         const res = await fetch('data.json')
         const data = await res.json()
         console.log(data)
-        PintarProductos()
+        PintarProductos(data)
     } catch (error) {
         console.log(error)
     }
