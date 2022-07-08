@@ -10,7 +10,15 @@ const cantidadTotal = document.getElementById('cantidadTotal')
 
 // Traer productos de data.json
 
-const fetchData = async () => {
+
+window.onload = async () => {
+    const productList = await (await fetch("data.json")).json()
+    console.log(productList)
+    PintarProductos(productList)
+
+}
+
+/* const fetchData = async () => {
     try{
         const res = await fetch('data.json')
         const data = await res.json()
@@ -19,12 +27,12 @@ const fetchData = async () => {
     } catch (error) {
         console.log(error)
     }
-}
+} */
 
 // Pintar productos
 
-const PintarProductos = data =>{
-    data.forEach((producto) => {
+function PintarProductos(productList) {
+    productList.forEach((producto) => {
         const div = document.createElement('div')
         div.classList.add('card')
         div.innerHTML = `
@@ -32,16 +40,16 @@ const PintarProductos = data =>{
     <div class="card-body">
         <h3 class="card-title">${producto.nombre}</h3>
         <p class="card-text">Precio:$ ${producto.precio}</p>
-        <button type="button" id="agregar${producto.id}" class="btn btn-dark">Agregar</button>
+        <button type="button" onclick="agregarAlCarrito()" id="agregar${producto.id}" class="btn btn-dark">Agregar</button>
     </div>
     `
         contenedorProductos.appendChild(div)
-    
-        const boton = document.getElementById(`agregar${producto.id}`)
-    
+
+/*         const boton = document.getElementById(`agregar${producto.id}`)
+
         boton.addEventListener('click', () => {
             agregarAlCarrito(producto.id)
-        })
+        }) */
     })
 }
 
@@ -51,7 +59,6 @@ const PintarProductos = data =>{
 let carrito = []
 
 document.addEventListener('DOMContentLoaded', () => {
-    fetchData()
     if (localStorage.getItem('carrito')) {
         carrito = JSON.parse(localStorage.getItem('carrito'))
         actualizarCarrito()
@@ -80,10 +87,12 @@ const agregarAlCarrito = (prodId) => {
 
         })
     } else {
-        const item = data.find((prod) => prod.id === prodId)
+        const item = productList.find((prod) => prod.id === prodId)
 
         carrito.push(item)
     }
+
+    // Agregué Toastify. Justificación: Esta librería me sirve para crear alertas cuando agrego o elimino un producto del carrito.
 
     Toastify({
         text: "Producto Agregado!",
@@ -146,31 +155,3 @@ const actualizarCarrito = () => {
     precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.cantidad * prod.precio, 0)
 
 }
-
-// Ejemplos Desestructuracion y Spread para complementario
-
-const objetos = {
-    nombre: "Javier",
-    ocupacion: "Pediatra",
-    hospital: "Dominguez",
-    dni: 38617495,
-}
-
-const {
-    nombre: nombreO,
-    ocupacion,
-    hospital,
-    dni
-} = objetos
-
-// console.log(nombreO,ocupacion,hospital,dni)
-
-const objetos2 = {
-    ...objetos,
-    dni: 37456345,
-    localidad: "Deseado",
-}
-
-// console.log(objetos2)
-
-// Agregué Toastify. Justificación: Esta librería me sirve para crear alertas cuando agrego o elimino un producto del carrito.

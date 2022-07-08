@@ -89,12 +89,18 @@
     width: 18rem;
     object-fit: cover; }
     .productos .card img {
+      margin: auto;
       height: 420px;
       width: 257px; }
       .productos .card img:hover {
         animation: pulse;
         animation-duration: 1s; }
 
+.table {
+  color: black;
+  font-family: 'Roboto Slab';
+  font-weight: bold;
+}
 /* galeria */
 .galeriaH3 {
   font-size: 50px;
