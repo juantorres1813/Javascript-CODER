@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // traer productos de data.json
     fetchData()
     // parseo json carrito
-    if (localStorage.getItem('carrito')) { 
+    if (localStorage.getItem('carrito')) {
         carrito = JSON.parse(localStorage.getItem('carrito'))
         pintarCarrito()
     }
@@ -52,7 +52,9 @@ const detectarBotones = (data) => {
             if (carrito.hasOwnProperty(producto.id)) {
                 producto.cantidad = carrito[producto.id].cantidad + 1
             }
-            carrito[producto.id] = { ...producto }
+            carrito[producto.id] = {
+                ...producto
+            }
             // console.log('carrito', carrito)
             // Agregué Toastify
             Toastify({
@@ -85,7 +87,7 @@ const pintarCarrito = () => {
         template.querySelectorAll('td')[0].textContent = producto.nombre
         template.querySelectorAll('td')[1].textContent = producto.cantidad
         template.querySelector('span').textContent = producto.precio * producto.cantidad
-        
+
         //botones
         template.querySelector('.btn-info').dataset.id = producto.id
         template.querySelector('.btn-danger').dataset.id = producto.id
@@ -120,8 +122,13 @@ const pintarFooter = () => {
     const fragment = document.createDocumentFragment()
 
     // Sumar cantidad y totales
-    const nCantidad = Object.values(carrito).reduce((acc, { cantidad }) => acc + cantidad, 0)
-    const nPrecio = Object.values(carrito).reduce((acc, {cantidad, precio}) => acc + cantidad * precio ,0)
+    const nCantidad = Object.values(carrito).reduce((acc, {
+        cantidad
+    }) => acc + cantidad, 0)
+    const nPrecio = Object.values(carrito).reduce((acc, {
+        cantidad,
+        precio
+    }) => acc + cantidad * precio, 0)
     // console.log(nPrecio)
 
     template.querySelectorAll('td')[0].textContent = nCantidad
@@ -139,6 +146,13 @@ const pintarFooter = () => {
         pintarCarrito()
     })
 
+    // boton pagar carrito
+    const botonPagar = document.querySelector('#pagar-carrito')
+    botonPagar.addEventListener('click', () => {
+        swalCheckout()
+        pintarCarrito()
+    })
+
 }
 
 // Accion de botones (agregar, eliminar)
@@ -153,8 +167,10 @@ const accionBotones = () => {
         btn.addEventListener('click', () => {
             // console.log(btn.dataset.id)
             const producto = carrito[btn.dataset.id]
-            producto.cantidad ++
-            carrito[btn.dataset.id] = { ...producto }
+            producto.cantidad++
+            carrito[btn.dataset.id] = {
+                ...producto
+            }
             // Agregué Toastify
             Toastify({
                 text: "Producto Agregado!",
@@ -178,7 +194,9 @@ const accionBotones = () => {
             if (producto.cantidad === 0) {
                 delete carrito[btn.dataset.id]
             } else {
-                carrito[btn.dataset.id] = { ...producto }
+                carrito[btn.dataset.id] = {
+                    ...producto
+                }
             }
             Toastify({
                 text: "Producto Eliminado!",
@@ -193,3 +211,32 @@ const accionBotones = () => {
         })
     })
 }
+
+function swalCheckout() {
+    const swal = Swal.mixin({
+        customClass: {
+            confirmButton: 'boton-confirmar',
+            cancelButton: 'boton-cancelar'
+        },
+    })
+
+    swal.fire({
+        title: 'Confirmar compra?',
+        html: `<form>
+        <input type="text" name="nombre" placeholder="Nombre"><br>
+        <input type="text" name="email" placeholder="Email"><br>
+        </form>`,
+        showCancelButton: true,
+        confirmButtonText: 'Comprar',
+        cancelButtonText: 'Cancelar',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            swal.fire(
+                'Compra realizada!',
+                'Gracias por comprar en Mi Equilibrio',
+                'success')
+        }
+    })
+}
+
