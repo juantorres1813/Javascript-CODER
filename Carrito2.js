@@ -27,15 +27,16 @@ const pintarProductos = (data) => {
     const template = document.querySelector('#template-productos').content
     const fragment = document.createDocumentFragment()
     // console.log(template)
-    data.forEach(producto => {
+    for (let i = 0; i < data.length; i++) {
         // console.log(producto)
-        template.querySelector('img').setAttribute('src', producto.img)
-        template.querySelector('h5').textContent = producto.nombre
-        template.querySelector('p span').textContent = producto.precio
-        template.querySelector('button').dataset.id = producto.id
+        let { img, nombre, precio, id } = data[i];
+        template.querySelector('img').setAttribute('src', img)
+        template.querySelector('h5').textContent = nombre
+        template.querySelector('p span').textContent = precio
+        template.querySelector('button').dataset.id = id
         const clone = template.cloneNode(true)
         fragment.appendChild(clone)
-    })
+    }
     contendorProductos.appendChild(fragment)
 }
 
@@ -229,7 +230,6 @@ function swalCheckout() {
         showCancelButton: true,
         confirmButtonText: 'Comprar',
         cancelButtonText: 'Cancelar',
-        reverseButtons: true
     }).then((result) => {
         if (result.isConfirmed) {
             swal.fire(
