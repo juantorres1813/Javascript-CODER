@@ -133,6 +133,7 @@ const pintarFooter = () => {
 
     template.querySelectorAll('td')[0].textContent = nCantidad
     template.querySelector('span').textContent = nPrecio
+    localStorage.setItem("precioTotal", nPrecio)
 
     const clone = template.cloneNode(true)
     fragment.appendChild(clone)
@@ -150,6 +151,7 @@ const pintarFooter = () => {
     const botonPagar = document.querySelector('#pagar-carrito')
     botonPagar.addEventListener('click', () => {
         swalCheckout()
+        carrito = {}
         pintarCarrito()
     })
 

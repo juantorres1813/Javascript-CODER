@@ -44,18 +44,15 @@ export function swalCheckout() {
 
     swal.fire({
         title: 'Confirmar compra?',
-        html: `<form>
-        <input type="text" name="nombre" placeholder="Nombre"><br>
-        <input type="text" name="email" placeholder="Email"><br>
-        </form>`,
+        html: `Su compra es de $${localStorage.getItem("precioTotal")}`,
         showCancelButton: true,
         confirmButtonText: 'Comprar',
         cancelButtonText: 'Cancelar',
     }).then((result) => {
         if (result.isConfirmed) {
             swal.fire(
-                'Compra realizada!',
-                'Gracias por comprar en Mi Equilibrio',
+                'Gracias por comprar en Mi Equilibrio!',
+                `Se ha enviado un mail a ${localStorage.getItem("email")} con los detalles de la misma.`,
                 'success')
         }
     })
