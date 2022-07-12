@@ -1,0 +1,26 @@
+body {
+    background-color: #ffffff;
+    background: url(/assets/multimedia/fondopagina.jpg);
+    background-attachment: fixed;
+    background-size: cover; }
+
+.formdisplay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 650px;
+    margin: 10px;
+}
+
+.forminside{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.input--submit{
+    background-color: rgb(28, 134, 221);
+    font-weight: bold;
+    color: black;
+}

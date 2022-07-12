@@ -1,3 +1,14 @@
+// variables
+const contendorProductos = document.querySelector('#contenedor-productos')
+const items = document.querySelector('#items')
+const footer = document.querySelector('#footer-carrito')
+let carrito = {}
+
+// importo modulos de librerias
+
+import {toastifyBienvenida, toastifyAgregar, toastifyEliminar, swalCheckout} from "./libraries.js"
+
+// Cuando cargue todo el html ejecuto estas funciones
 document.addEventListener("DOMContentLoaded", () => {
     // traer productos de data.json
     fetchData()
@@ -8,8 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 })
 
-// declaro funciones
+toastifyBienvenida()
 
+// Leer datos desde archivo data.json
 const fetchData = async () => {
     try {
         const res = await fetch('data.json')
@@ -22,7 +34,6 @@ const fetchData = async () => {
     }
 }
 // traer productos a html
-const contendorProductos = document.querySelector('#contenedor-productos')
 const pintarProductos = (data) => {
     const template = document.querySelector('#template-productos').content
     const fragment = document.createDocumentFragment()
@@ -40,7 +51,6 @@ const pintarProductos = (data) => {
     contendorProductos.appendChild(fragment)
 }
 
-let carrito = {}
 // reconocer los botones
 const detectarBotones = (data) => {
     const botones = document.querySelectorAll('.card button')
@@ -58,22 +68,12 @@ const detectarBotones = (data) => {
             }
             // console.log('carrito', carrito)
             // Agregué Toastify
-            Toastify({
-                text: "Producto Agregado!",
-                duration: 2000,
-                gravity: 'bottom',
-                position: 'right',
-                style: {
-                    background: "linear-gradient(90deg, rgba(9,9,121,0.7399159492898721) 43%, rgba(0,212,255,1) 97%)",
-                }
-            }).showToast();
+            toastifyAgregar()
             pintarCarrito()
         })
     })
 }
-
-const items = document.querySelector('#items')
-
+// crear carrito en html
 const pintarCarrito = () => {
 
     //pendiente innerHTML
@@ -106,8 +106,7 @@ const pintarCarrito = () => {
 
 }
 
-// carrito footer
-const footer = document.querySelector('#footer-carrito')
+// carrito en footer
 const pintarFooter = () => {
 
     footer.innerHTML = ''
@@ -156,7 +155,7 @@ const pintarFooter = () => {
 
 }
 
-// Accion de botones (agregar, eliminar)
+// Accion de botones (agregar, eliminar) producto
 const accionBotones = () => {
     const botonesAgregar = document.querySelectorAll('#items .btn-info')
     const botonesEliminar = document.querySelectorAll('#items .btn-danger')
@@ -173,15 +172,7 @@ const accionBotones = () => {
                 ...producto
             }
             // Agregué Toastify
-            Toastify({
-                text: "Producto Agregado!",
-                duration: 2000,
-                gravity: 'bottom',
-                position: 'right',
-                style: {
-                    background: "linear-gradient(90deg, rgba(9,9,121,0.7399159492898721) 43%, rgba(0,212,255,1) 97%)",
-                }
-            }).showToast();
+            toastifyAgregar()
             pintarCarrito()
         })
     })
@@ -199,44 +190,9 @@ const accionBotones = () => {
                     ...producto
                 }
             }
-            Toastify({
-                text: "Producto Eliminado!",
-                duration: 2000,
-                gravity: 'bottom',
-                position: 'right',
-                style: {
-                    background: "linear-gradient(90deg, rgba(253,29,29,0.8939775739397321) 57%, rgba(224,188,188,1) 96%)",
-                }
-            }).showToast();
+            toastifyEliminar()
             pintarCarrito()
         })
-    })
-}
-
-function swalCheckout() {
-    const swal = Swal.mixin({
-        customClass: {
-            confirmButton: 'boton-confirmar',
-            cancelButton: 'boton-cancelar'
-        },
-    })
-
-    swal.fire({
-        title: 'Confirmar compra?',
-        html: `<form>
-        <input type="text" name="nombre" placeholder="Nombre"><br>
-        <input type="text" name="email" placeholder="Email"><br>
-        </form>`,
-        showCancelButton: true,
-        confirmButtonText: 'Comprar',
-        cancelButtonText: 'Cancelar',
-    }).then((result) => {
-        if (result.isConfirmed) {
-            swal.fire(
-                'Compra realizada!',
-                'Gracias por comprar en Mi Equilibrio',
-                'success')
-        }
     })
 }
 
