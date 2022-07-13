@@ -26,6 +26,6 @@
 
 body {
     background-color: #ffffff;
-    background: url("assets/multimedia/fondopagina.jpg");
+    background-image: url('assets/multimedia/fondopagina.jpg');
     background-attachment: fixed;
     background-size: cover; }
