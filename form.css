@@ -24,3 +24,8 @@ body {
     font-weight: bold;
     color: black;
 }
+
+.input{
+    padding: 10px;
+    margin-bottom: 10px;
+}

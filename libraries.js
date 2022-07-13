@@ -52,7 +52,7 @@ export function swalCheckout() {
         if (result.isConfirmed) {
             swal.fire(
                 'Gracias por comprar en Mi Equilibrio!',
-                `Se ha enviado un mail a ${localStorage.getItem("email")} con los detalles de la misma.`,
+                `Nos pondremos en contacto a tu email: ${localStorage.getItem("email")} con los detalles de la compra.`,
                 'success')
         }
     })
